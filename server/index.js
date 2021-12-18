@@ -31,7 +31,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', Router);
 app.use(express.json());
 
-
 const PORT=8000;
 app.listen(PORT,()=>{
     console.log(`server is running sucessfully on ${PORT}`);

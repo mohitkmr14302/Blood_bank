@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config();
 import Profile from '../schema/profile-schema.js'
 import jwt from 'jsonwebtoken';
 export const saveprofile = async (req, res) => {
@@ -33,7 +31,7 @@ export const loginprofile = async (req, res) => {
 export const getprofile = async (req, res) => {
     try {
         const token1 = req.cookies['jwt'];
-        const verifyuser = jwt.verify(token1, "mynameismohitkumarfromnationalinstituteoftechnologyagartala");
+        const verifyuser = jwt.verify(token1, process.env.SECRET_KEY);
         const user = await Profile.findOne({ _id: verifyuser._id });
         res.status(200).json(user);
     } catch (error) {
@@ -45,7 +43,7 @@ export const getprofile = async (req, res) => {
 export const getuseremail = async (req, res) => {
     try {
         const token1 = req.cookies['jwt'];
-        const verifyuser = jwt.verify(token1, "mynameismohitkumarfromnationalinstituteoftechnologyagartala");
+        const verifyuser = jwt.verify(token1, process.env.SECRET_KEY);
         const user = await Profile.findOne({ _id: verifyuser._id });
         res.status(200).json(user);
     } catch (error) {

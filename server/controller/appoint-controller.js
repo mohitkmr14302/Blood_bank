@@ -18,7 +18,7 @@ export const createappointt = async (req, res) => {
 export const userappoint = async (req, res) => {
     try {
         const token1 = req.cookies['jwt'];
-        const verifyuser = jwt.verify(token1, "mynameismohitkumarfromnationalinstituteoftechnologyagartala");
+        const verifyuser = jwt.verify(token1, process.env.SECRET_KEY);
         const user = await Profile.findOne({ _id: verifyuser._id });
         let post = await appoint.find({ email: user.email });
         res.status(200).json(post);
